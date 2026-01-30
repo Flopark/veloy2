@@ -139,18 +139,40 @@ with st.sidebar:
 
 # --- CONTENU PRINCIPAL ---
 st.title("🚲 Veloy - Gadz")
-st.markdown("Faites chauffer vos giboles pour préparer SKZ.")
+st.markdown("Faites chauffer vos giboles pour préparer les GUAI.")
 
 if st.session_state['logged_in']:
     
     # 1. FORMULAIRE DE RÉSERVATION
-    st.subheader("📅 Nouvelle Réservation")
+   st.subheader("📅 Nouvelle Réservation")
     
+    # Liste des vélos disponibles
     bikes = ["Vélo 1", "Vélo 2", "Vélo 3", "Vélo 4"]
     
+    # Dictionnaire pour lier chaque vélo à sa photo
+    # ATTENTION : Vérifie que les noms des fichiers correspondent EXACTEMENT à ce que tu as mis dans le dossier 'asset'
+    images_velos = {
+        "Vélo 1": "asset/velo1.jpg",
+        "Vélo 2": "asset/velo2.jpg",
+        "Vélo 3": "asset/velo3.jpg",
+        "Vélo 4": "asset/velo4.jpg"
+    }
+
     col1, col2 = st.columns(2)
+    
     with col1:
         bike_choice = st.selectbox("Choisir un vélo", bikes)
+        
+        # --- C'est ici que la magie opère ---
+        # On affiche l'image correspondant au choix
+        # On gère le cas où l'image n'existerait pas pour éviter que l'app plante
+        try:
+            image_path = images_velos.get(bike_choice)
+            st.image(image_path, width=300, caption=f"📸 {bike_choice}")
+        except:
+            st.warning(f"Photo du {bike_choice} introuvable (vérifier le dossier asset)")
+        # -------------------------------------
+
         # On met la date par défaut à aujourd'hui
         date_choice = st.date_input("Date de l'emprunt", value=datetime.today())
     
@@ -161,10 +183,12 @@ if st.session_state['logged_in']:
     # Calcul des dates
     start_dt = datetime.combine(date_choice, start_time)
     end_dt = start_dt + timedelta(hours=duration)
-
+    
+    # ... Le reste du code (bouton valider) reste identique ...
     st.info(f"Créneau demandé : **{start_dt.strftime('%H:%M')}** à **{end_dt.strftime('%H:%M')}** ({date_choice.strftime('%d/%m')})")
 
     if st.button("Valider la réservation"):
+        # ... (Garde ton code de validation ici) ...
         if end_dt <= start_dt:
             st.error("L'heure de fin doit être après l'heure de début !")
         else:
@@ -272,3 +296,4 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
