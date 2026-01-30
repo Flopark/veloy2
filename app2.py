@@ -264,10 +264,11 @@ col_f1, col_f2 = st.columns([1.5, 4])
 with col_f1:
     # Logo Arts et Métiers (Chemin local tel que fourni)
     # Note : Sur le Cloud, assure-toi que le dossier 'asset' et l'image sont bien uploadés !
-    st.image("asset/Amtradszaloeil-modified.png", width=80)
+    st.image("Amtradszaloeil-modified.png", width=80)
 
 with col_f2:
     st.markdown("""
     **Veloy - Gadz** Une initiative lars tradz pour évacuer les bières de vos coin².  
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
+
     """)
