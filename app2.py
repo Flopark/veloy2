@@ -144,7 +144,7 @@ st.markdown("Faites chauffer vos giboles pour préparer les GUAI.")
 if st.session_state['logged_in']:
     
     # 1. FORMULAIRE DE RÉSERVATION
-   st.subheader("📅 Nouvelle Réservation")
+    st.subheader("📅 Nouvelle Réservation")
     
     # Liste des vélos disponibles
     bikes = ["Vélo 1", "Vélo 2", "Vélo 3", "Vélo 4"]
@@ -296,5 +296,6 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
 
