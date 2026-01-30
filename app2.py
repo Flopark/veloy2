@@ -152,10 +152,10 @@ if st.session_state['logged_in']:
     # Dictionnaire pour lier chaque vélo à sa photo
     # ATTENTION : Vérifie que les noms des fichiers correspondent EXACTEMENT à ce que tu as mis dans le dossier 'asset'
     images_velos = {
-        "Vélo 1": "asset/velo1.jpg",
-        "Vélo 2": "asset/velo2.jpg",
-        "Vélo 3": "asset/velo3.jpg",
-        "Vélo 4": "asset/velo4.jpg"
+        "Vélo 1": "vel1.jpeg",
+        "Vélo 2": "vel2.jpeg",
+        "Vélo 3": "vel3.jpeg",
+        "Vélo 4": "vel4.jpeg"
     }
 
     col1, col2 = st.columns(2)
@@ -296,4 +296,5 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
