@@ -173,12 +173,12 @@ if st.session_state['logged_in']:
             st.warning(f"Photo du {bike_choice} introuvable (vérifier le dossier asset)")
         # -------------------------------------
 
-        # On met la date par défaut à aujourd'hui
-        date_choice = st.date_input("Date de l'emprunt", value=datetime.today())
+        
     
     with col2:
         start_time = st.time_input("Heure de début", value=time(9, 0))
         duration = st.number_input("Durée (heures)", min_value=0.5, max_value=24.0, step=0.5, value=1.0)
+        date_choice = st.date_input("Date de l'emprunt", value=datetime.today())
 
     # Calcul des dates
     start_dt = datetime.combine(date_choice, start_time)
@@ -296,6 +296,7 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
 
 
