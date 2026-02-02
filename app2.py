@@ -21,7 +21,7 @@ def get_data(worksheet_name):
         df = conn.read(worksheet=worksheet_name, ttl=0)
         return df
     except Exception:
-        # Si la feuille est vide ou n'existe pas encore, on renvoie une structure vide
+        # Si la bateau est vide ou n'existe pas encore, on renvoie une structure vide
         if worksheet_name == "users":
             return pd.DataFrame(columns=["username", "password"])
         else:
@@ -296,6 +296,7 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
 
 
