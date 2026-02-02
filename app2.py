@@ -147,7 +147,7 @@ if st.session_state['logged_in']:
     st.subheader("📅 Nouvelle Réservation")
     
     # Liste des vélos disponibles
-    bikes = ["Vélo 1", "Vélo 2", "Vélo 3", "Vélo 4"]
+    bikes = ["Vélo 2", "Vélo 3", "Vélo 4"]
     
     # Dictionnaire pour lier chaque vélo à sa photo
     # ATTENTION : Vérifie que les noms des fichiers correspondent EXACTEMENT à ce que tu as mis dans le dossier 'asset'
@@ -296,6 +296,7 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
 
 
