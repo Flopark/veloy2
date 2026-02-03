@@ -154,7 +154,7 @@ if st.session_state['logged_in']:
     images_velos = {
         "Vélo 1": "vel1.jpeg",
         "Le grand": "vel2.jpeg",
-        "Le tranquille (en réparation)": "vel3.jpeg",
+        "Le tranquille": "vel3.jpeg",
         "L'abominable": "vel4.jpeg"
     }
 
@@ -296,6 +296,7 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
 
 
