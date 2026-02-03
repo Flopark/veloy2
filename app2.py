@@ -207,10 +207,11 @@ if st.session_state['logged_in']:
     # 2. MES RÉSERVATIONS
     st.markdown("### 🎫 Mes réservations")
     LOCK_CODES = {
-        "Vélo 1": "0225",
+        "Le grand": "0225",
+        "Le tranquille": "0225",
         "L'abominable": "0225",
-        "Le tranquille (en réparation)": "0225",
-        "Le grand": "0225"
+        "Le Violet" : "0225",
+        "Le vélo de (Lab)t ou(r)° (venir en mp pour l'utiliser)": "0225",
     }
     
     # Récupération depuis GSheets
@@ -299,6 +300,7 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
 
 
