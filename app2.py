@@ -140,6 +140,8 @@ with st.sidebar:
 # --- CONTENU PRINCIPAL ---
 st.title("🚲 Veloy - Gadz")
 st.markdown("Faites chauffer vos giboles pour préparer les GUAI.")
+st.markdown("⚠️ Pensez bien à ranger le vélo dans l'espace reservé aux vélos de prom's ⚠️")
+
 
 if st.session_state['logged_in']:
     
@@ -297,6 +299,7 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
 
 
