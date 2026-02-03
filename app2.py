@@ -112,7 +112,7 @@ with st.sidebar:
     if not st.session_state['logged_in']:
         choice = st.radio("Option", ["Connexion", "Inscription"])
         user = st.text_input("Identifiant (bucque Li prom's)")
-        password = st.text_input("Mot de passe", type='password')
+        password = st.text_input("Mot de passe (lettre uniquement)", type='password')
         
         if choice == "Inscription":
             if st.button("Créer compte"):
@@ -297,6 +297,7 @@ with col_f2:
     *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
 
     """)
+
 
 
 
