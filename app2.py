@@ -297,9 +297,10 @@ with col_f1:
 with col_f2:
     st.markdown("""
     **Veloy - Gadz** Une initiative lars tradz pour évacuer les bières de vos coin².  
-    *Développé avec ❤️ par Seratr1 71Li225 et K'sséne 148Li224*
+    *Développé avec ❤️ par K'sséne 148Li224 et Seratr1 71Li225*
 
     """)
+
 
 
 
