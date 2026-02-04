@@ -81,28 +81,6 @@ def cancel_reservation(reservation_id):
     updated_df = df[df['id'] != reservation_id]
     update_data(updated_df, "reservations")
 
-def clean_old_reservations():
-    # 1. On récupère les données DU GOOGLE SHEET
-    df = get_data("reservations")
-    
-    if not df.empty:
-        # Conversion en dates pour pouvoir comparer
-        df['end_dt'] = pd.to_datetime(df['end_dt'])
-        
-        # 2. On FILTRE : On ne garde que ce qui est dans le futur
-        now = datetime.now()
-        future_df = df[df['end_dt'] > now]
-        
-        # Si on a trouvé des vieux trucs à supprimer (si la taille a changé)
-        if len(future_df) < len(df):
-            # On remet les dates au format texte propre pour le stockage
-            future_df['start_dt'] = future_df['start_dt'].dt.strftime('%Y-%m-%dT%H:%M:%S')
-            future_df['end_dt'] = future_df['end_dt'].dt.strftime('%Y-%m-%dT%H:%M:%S')
-            
-            # 3. ACTION CRITIQUE : On met à jour le GOOGLE SHEET
-            # Cette commande REMPLACE le contenu du Sheet par la version nettoyée.
-            # Les anciennes lignes sont donc bien SUPPRIMÉES du fichier en ligne.
-            update_data(future_df, "reservations")
 
 def add_user(username, password):
     df = get_data("users")
@@ -162,7 +140,7 @@ with st.sidebar:
             st.rerun()
 
 # --- CONTENU PRINCIPAL ---
-clean_old_reservations()
+
 st.title("🚲 Veloy - Gadz")
 st.markdown("Faites chauffer vos giboles pour préparer les GUAI.")
 st.markdown("⚠️ Pensez bien à ranger le vélo dans l'espace reservé aux vélos de prom's ⚠️")
@@ -325,6 +303,7 @@ with col_f2:
     *Développé avec ❤️ par K'sséne 148Li224 et Seratr1 71Li225*
 
     """)
+
 
 
 
