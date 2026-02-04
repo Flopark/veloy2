@@ -93,6 +93,30 @@ def add_user(username, password):
     update_data(updated_df, "users")
     return True
 
+def clean_old_reservations():
+    """
+    Supprime automatiquement les réservations dont la date de fin est passée.
+    """
+    df = get_data("reservations")
+    
+    if not df.empty:
+        # On s'assure que c'est bien des dates
+        df['end_dt'] = pd.to_datetime(df['end_dt'])
+        
+        # On garde uniquement les réservations qui finissent DANS LE FUTUR
+        # (end_dt > maintenant)
+        now = datetime.now()
+        future_df = df[df['end_dt'] > now]
+        
+        # Si la taille a changé (donc qu'on a supprimé des trucs), on met à jour le Sheet
+        if len(future_df) < len(df):
+            # On remet les dates en format texte ISO pour éviter les bugs d'écriture JSON
+            # (Optionnel selon la version de pandas mais plus sûr)
+            future_df['start_dt'] = future_df['start_dt'].dt.strftime('%Y-%m-%dT%H:%M:%S')
+            future_df['end_dt'] = future_df['end_dt'].dt.strftime('%Y-%m-%dT%H:%M:%S')
+            
+            update_data(future_df, "reservations")
+
 def login_user(username, password):
     df = get_data("users")
     if df.empty:
@@ -138,6 +162,8 @@ with st.sidebar:
             st.rerun()
 
 # --- CONTENU PRINCIPAL ---
+clean_old_reservations()
+
 st.title("🚲 Veloy - Gadz")
 st.markdown("Faites chauffer vos giboles pour préparer les GUAI.")
 st.markdown("⚠️ Pensez bien à ranger le vélo dans l'espace reservé aux vélos de prom's ⚠️")
@@ -300,6 +326,7 @@ with col_f2:
     *Développé avec ❤️ par K'sséne 148Li224 et Seratr1 71Li225*
 
     """)
+
 
 
 
