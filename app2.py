@@ -85,23 +85,25 @@ def clean_old_reservations():
     df = get_data("reservations")
     
     if not df.empty:
-        # --- CORRECTION ICI ---
-        # On force la conversion des DEUX colonnes en date dès le début
-        # (Sinon Python pense que start_dt est juste du texte)
+        # 1. Conversion propre des dates
         df['start_dt'] = pd.to_datetime(df['start_dt'])
         df['end_dt'] = pd.to_datetime(df['end_dt'])
         
-        # On filtre : on garde ceux dont la fin est dans le futur
-        now = datetime.now()
-        future_df = df[df['end_dt'] > now].copy() # .copy() évite des avertissements pandas
+        # 2. GESTION DU DÉCALAGE HORAIRE (UTC+1 pour la France)
+        # On ajoute 1 heure à l'heure du serveur pour qu'il soit synchro avec nous
+        now_france = datetime.now() + timedelta(hours=1)
         
-        # Si on a supprimé des lignes (nettoyage nécessaire)
+        # 3. Filtrage
+        future_df = df[df['end_dt'] > now_france].copy()
+        
+        # 4. Mise à jour si nécessaire
         if len(future_df) < len(df):
-            # Maintenant que ce sont bien des objets "date", on peut utiliser .dt
             future_df['start_dt'] = future_df['start_dt'].dt.strftime('%Y-%m-%dT%H:%M:%S')
             future_df['end_dt'] = future_df['end_dt'].dt.strftime('%Y-%m-%dT%H:%M:%S')
             
             update_data(future_df, "reservations")
+            # Petit hack : on recharge la page pour que l'utilisateur voie la modif tout de suite
+            st.rerun()
 
 
 def add_user(username, password):
@@ -325,6 +327,7 @@ with col_f2:
     *Développé avec ❤️ par K'sséne 148Li224 et Seratr1 71Li225*
 
     """)
+
 
 
 
